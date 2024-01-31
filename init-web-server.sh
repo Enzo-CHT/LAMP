@@ -23,7 +23,7 @@ sudo apache2ctl -v;
 
 
 ## CONFIGURATION APACHE 2
-echo "Configuration modules Apache2";
+echo "${white}Configuration modules Apache2";
 sudo systemctl restart apache2;
 sudo a2enmod rewrite ;
 sudo a2enmod deflate ;
@@ -37,7 +37,7 @@ echo "Configuration modules Apache2 ${green}[ OK ]${white}";
 ## INSTALLATION PHP
 
 
-echo -e "${red}Installation PHP";
+echo -e "${red}Installation PHP${white}";
 
 sudo apt-get install -y php ;
 sudo apt-get install -y php-pdo php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath  ;
@@ -56,15 +56,15 @@ echo -e "${red}Création du fichier phpinfo.php ${green}[ OK ]${white}";
 ## INSTALLATION MARIADB
 
 
-echo -e "${red}Installation MariaDB";
+echo -e "${red}Installation MariaDB${white}";
 sudo apt-get install -y mariadb-server ;
 
 
-echo -e "${red}Installation MariaDB ${green}[ OK ]${white}";
+echo -e "${red}Installation MariaDB ${green}[ OK ]${white}${white}";
 
 
 
-echo -e "${red}Configuration MariaDB";
+echo -e "${red}Configuration MariaDB${white}";
 sudo mariadb-secure-installation;
 sudo systemctl restart mariadb ;
 sudo echo "lower_case_table_names = 1" >> /etc/mysql/my.cnf;
@@ -76,7 +76,7 @@ mariadb -V;
 ##INSTALLATION phpMyAdmin
 
 
-echo -e "${red}Installation phpMyAdmin";
+echo -e "${red}Installation phpMyAdmin${white}";
 
 
 sudo apt install wget -y ;
@@ -86,24 +86,24 @@ sudo apt -y install php php-cgi php-mysqli php-pear php-mbstring libapache2-mod-
 sudo wget -P /tmp/Downloads https://www.phpMyAdmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz;
 
 
-echo -e "${red}Installation phpMyAdmin ${green}[ OK ]${white}";
+echo -e "${red}Installation phpMyAdmin ${green}[ OK ]${white}${white}";
 
 
 
-echo -e "${red}Check GPG Key";
+echo -e "${red}Check GPG Key${white}";
 sudo wget -P /tmp/Downloads https://files.phpMyAdmin.net/phpMyAdmin.keyring
 cd /tmp/Downloads;
 
 
 
-echo -e "${red}Importation clé GPG";
+echo -e "${red}Importation clé GPG${white}";
 sudo gpg --import phpMyAdmin.keyring ;
 sudo wget https://www.phpMyAdmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz.asc ;
 sudo gpg --verify phpMyAdmin-latest-all-languages.tar.gz.asc;
 
 
 
-echo -e "${red}Configuration phpMyAdmin";
+echo -e "${red}Configuration phpMyAdmin${white}";
 sudo mkdir /var/www/html/phpMyAdmin;
 sudo tar xvf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpMyAdmin ;
 sudo cp /var/www/html/phpMyAdmin/config.sample.inc.php /var/www/html/phpMyAdmin/config.inc.php ;
@@ -137,4 +137,4 @@ sudo systemctl restart apache2;
 
 
 
-echo -e "${red}Configuration phpMyAdmin ${green}[ OK ]${white}";
+echo -e "${red}Configuration phpMyAdmin ${green}[ OK ]${white}${white}";
